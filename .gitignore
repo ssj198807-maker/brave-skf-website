@@ -1,0 +1,6 @@
+# EdgeOne 部署残留
+.edgeone/
+.env
+
+# 系统文件
+.DS_Store
