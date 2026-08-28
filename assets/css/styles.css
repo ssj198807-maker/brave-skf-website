@@ -482,11 +482,13 @@ ul { margin: 0; padding-left: 1.2em; }
   position: absolute; inset: 0;
   z-index: 0;
 }
-.hero.hero-image .hero-bg img {
+.hero.hero-image .hero-bg img,
+.hero.hero-image .hero-bg video {
   width: 100%; height: 100%;
   object-fit: cover; display: block;
   opacity: .7;
 }
+.hero.hero-image .hero-bg video { object-position: center; }
 .hero.hero-image .hero-bg::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(120deg,
