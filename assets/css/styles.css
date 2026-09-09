@@ -476,6 +476,7 @@ ul { margin: 0; padding-left: 1.2em; }
 .hero.hero-video {
   position: relative;
   height: 100vh;
+  padding: 0;                 /* 覆盖 .hero 基础上下 padding，让视频真正占满 100vh */
   background: #000;
   overflow: hidden;
   display: flex;
@@ -485,7 +486,7 @@ ul { margin: 0; padding-left: 1.2em; }
 .hero.hero-video .hero-video-el {
   width: 100%;
   height: 100%;
-  object-fit: contain;        /* 保留视频原始比例，不裁剪，黑边填充 */
+  object-fit: cover;          /* 铺满整屏：16:9 屏上无裁切；其他比例屏裁掉少量边缘以保证铺满 */
   object-position: center center;
   display: block;
   background: #000;
