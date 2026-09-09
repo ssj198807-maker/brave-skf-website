@@ -1046,6 +1046,113 @@ ul { margin: 0; padding-left: 1.2em; }
 .footer-distributor { margin-top: var(--space-3); }
 .footer-distributor img { height: 30px; width: auto; background: #fff; padding: 5px 9px; border-radius: var(--r-sm); display: inline-block; }
 .footer-disclaimer { display: block; max-width: 560px; line-height: 1.6; margin-top: 3px; }
+
+/* ===== 首页迭代：SKF 参考版新增板块样式 ===== */
+
+/* ---- 我们的业务（产品 / 服务 / 行业 三支柱） ---- */
+.business-3 { padding: var(--space-9) 0; }
+.business-3 .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.biz-card {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: var(--space-6);
+  background: var(--paper);
+  transition: box-shadow .2s, transform .2s, border-color .2s;
+}
+.biz-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: var(--bf-blue-100); }
+.biz-card .biz-icon {
+  width: 52px; height: 52px;
+  border-radius: var(--r-md);
+  background: var(--bf-blue-50);
+  color: var(--bf-blue-700);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: var(--space-4);
+}
+.biz-card .biz-icon svg { width: 26px; height: 26px; }
+.biz-card h3 { font-size: 20px; margin: 0 0 var(--space-2); color: var(--ink-900); letter-spacing: -0.005em; }
+.biz-card p { color: var(--ink-500); font-size: 15px; line-height: 1.7; margin: 0 0 var(--space-4); }
+.biz-card .biz-link {
+  font-weight: 600; color: var(--bf-blue-700); font-size: 14.5px;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: gap .15s;
+}
+.biz-card .biz-link:hover { gap: 10px; }
+
+/* ---- 正品保障（对标 SKF「识别赝品」） ---- */
+.authenticity {
+  background: linear-gradient(120deg, var(--bf-blue-900) 0%, #0d3a6b 100%);
+  color: #fff;
+  padding: var(--space-8) 0;
+}
+.authenticity .container { display: flex; align-items: center; gap: var(--space-7); flex-wrap: wrap; }
+.authenticity .auth-badge {
+  flex-shrink: 0;
+  width: 84px; height: 84px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent-500);
+}
+.authenticity .auth-badge svg { width: 38px; height: 38px; }
+.authenticity .auth-body { flex: 1; min-width: 260px; }
+.authenticity h2 { color: #fff; font-size: clamp(22px, 2.6vw, 30px); margin: 0 0 var(--space-2); letter-spacing: -0.01em; }
+.authenticity p { color: rgba(255,255,255,.82); margin: 0; font-size: 16px; line-height: 1.7; }
+.authenticity .auth-cta { flex-shrink: 0; }
+.authenticity .auth-cta a {
+  display: inline-block;
+  background: var(--accent-500); color: #1a1205;
+  padding: 12px 22px; border-radius: var(--r-sm); font-weight: 600;
+  text-decoration: none; white-space: nowrap;
+  transition: filter .15s;
+}
+.authenticity .auth-cta a:hover { filter: brightness(1.06); }
+
+/* ---- 品牌视频位（16:9 占位，待替换真实视频） ---- */
+.video-feature { padding: var(--space-9) 0; background: var(--paper-2); }
+.video-feature .section-head { text-align: center; }
+.video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--bf-blue-900);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--line);
+}
+.video-frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.video-placeholder {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: var(--space-3);
+  background: radial-gradient(120% 120% at 50% 20%, #14375f 0%, var(--bf-blue-900) 70%);
+  color: #fff; text-align: center; padding: var(--space-5);
+}
+.video-placeholder .vp-icon {
+  width: 76px; height: 76px; border-radius: 50%;
+  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25);
+  display: flex; align-items: center; justify-content: center;
+}
+.video-placeholder .vp-icon svg { width: 30px; height: 30px; color: #fff; margin-left: 4px; }
+.video-placeholder .vp-title { font-size: 20px; font-weight: 700; letter-spacing: .02em; }
+.video-placeholder .vp-sub { font-size: 14px; color: rgba(255,255,255,.7); max-width: 420px; line-height: 1.6; }
+.video-placeholder .vp-tag {
+  margin-top: var(--space-2);
+  font-size: 12px; letter-spacing: .08em;
+  color: var(--accent-500);
+  border: 1px dashed rgba(239,159,39,.5);
+  padding: 4px 12px; border-radius: 999px;
+}
+
+/* ---- 移动端适配 ---- */
+@media (max-width: 900px) {
+  .business-3 .grid { grid-template-columns: 1fr; }
+  .authenticity .container { flex-direction: column; align-items: flex-start; }
+  .authenticity .auth-cta { width: 100%; }
+  .authenticity .auth-cta a { width: 100%; text-align: center; }
+}
 .header-distributor { height: 22px; width: auto; margin-left: var(--space-3); align-self: center; }
 @media (max-width: 640px) { .header-distributor { display: none; } }
 .qr-placeholder { width: 150px; height: 150px; border: 2px dashed var(--line); border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; text-align: center; color: var(--ink-400); font-size: 12px; line-height: 1.5; background: var(--paper-2); margin-top: var(--space-3); }
