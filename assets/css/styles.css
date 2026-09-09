@@ -472,45 +472,81 @@ ul { margin: 0; padding-left: 1.2em; }
 
 /* -------- Hero (image background variant) -------- */
 /* -------- Hero：SKF 式全屏沉浸视频首屏 -------- */
-.hero.hero-image {
+/* -------- Hero：SKF 式全屏视频播放器（带声音 · 非背景 · 16:9 原始比例） -------- */
+.hero.hero-video {
   position: relative;
-  background: var(--bf-blue-900);
-  color: #fff;
-  overflow: hidden;
-  min-height: 100vh;
   height: 100vh;
+  background: #000;
+  overflow: hidden;
   display: flex;
   align-items: center;
-  padding: 0;
+  justify-content: center;
 }
-.hero.hero-image .hero-bg {
-  position: absolute; inset: 0;
-  z-index: 0;
+.hero.hero-video .hero-video-el {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;        /* 保留视频原始比例，不裁剪，黑边填充 */
+  object-position: center center;
+  display: block;
+  background: #000;
 }
-.hero.hero-image .hero-bg img,
-.hero.hero-image .hero-bg video {
-  width: 100%; height: 100%;
-  object-fit: cover; display:block;
-  opacity: 1;
+/* 授权徽章：视频右上角浮动 */
+.hero.hero-video .cert-badge { z-index: 3; }
+/* 声音开关按钮 */
+.video-sound-toggle {
+  position: absolute;
+  right: var(--space-5);
+  bottom: var(--space-5);
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.4);
+  background: rgba(0,0,0,.45);
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
-.hero.hero-image .hero-bg video { object-position: center center; }
-.hero.hero-image .hero-bg::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(120deg,
-    rgba(10,44,82,.85) 0%,
-    rgba(24,95,165,.65) 50%,
-    rgba(10,44,82,.50) 100%);
+.video-sound-toggle:hover { background: rgba(0,0,0,.65); }
+/* 向下滚动提示 */
+.scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-5);
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: #fff;
+  font-size: 13px;
+  text-decoration: none;
+  opacity: .85;
+  text-shadow: 0 1px 4px rgba(0,0,0,.6);
 }
-.hero.hero-image::after {
-  content: ""; position: absolute; inset: 0;
-  background: radial-gradient(80% 60% at 70% 30%, rgba(255,255,255,.05) 0%, transparent 60%);
-  pointer-events: none; z-index: 0;
+.scroll-arrow { animation: scrollBounce 1.8s infinite; font-size: 18px; line-height: 1; }
+@keyframes scrollBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+
+/* -------- 视频下方品牌主张 -------- */
+.intro-band {
+  background: var(--paper);
+  padding: var(--space-9) 0;
+  text-align: center;
 }
-.hero.hero-image .container {
-  position: relative; z-index: 1;
-  padding-top: var(--space-8);
-  padding-bottom: var(--space-8);
-}
+.intro-band .eyebrow-pill { background: var(--bf-blue-50); color: var(--bf-blue-900); }
+.intro-band h1 { color: var(--ink-900); max-width: 880px; margin-left: auto; margin-right: auto; }
+.intro-band .lead,
+.intro-band .lead-punchline { color: var(--ink-700); margin-left: auto; margin-right: auto; }
+.intro-band .actions { justify-content: center; }
+.intro-band .btn-primary { background: var(--bf-blue-900); color: #fff; }
+.intro-band .btn-primary:hover { background: var(--bf-blue-700); }
+.intro-band .btn-ghost { color: var(--bf-blue-900); border-color: var(--bf-blue-900); }
+.intro-band .btn-ghost:hover { background: var(--bf-blue-50); }
 
 /* -------- Lifecycle infographic (SVG process) -------- */
 .lifecycle {
@@ -951,7 +987,8 @@ ul { margin: 0; padding-left: 1.2em; }
   .nav a { padding: 10px 0; border-bottom: 1px solid var(--paper-3); }
   .menu-toggle { display: block; }
   .hero { padding: var(--space-7) 0 var(--space-6); }
-  .hero.hero-image { min-height: 100svh; height: auto; padding: var(--space-10) 0 var(--space-8); }
+  .hero.hero-video { min-height: 100svh; height: 100svh; padding: 0; }
+  .intro-band { padding: var(--space-7) 0; }
   .section { padding: var(--space-7) 0; }
 }
 

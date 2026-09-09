@@ -37,15 +37,14 @@
   </div>
 </header>
 
-<!-- ============ HERO（对标 SKF：强主张 + 百年传承标签） ============ -->
-<section class="hero hero-image" data-page-node-id="zxLckHalHaY9CJousPVTPC">
-  <div class="hero-bg" data-page-node-id="W1urHLv87gWCWpLkQqIdUC">
-    <video class="hero-bg-video" autoplay muted loop playsinline poster="assets/img/hero-1.png" data-page-node-id="OXGWHH006fju1lGWBwiuwS">
-      <source src="assets/media/brand-video.mp4" type="video/mp4" data-page-node-id="zkzEghuQfkhwD8Z38Vk37l" />
-    </video>
-  </div>
+<!-- ============ HERO：SKF 式全屏视频（带声音 · 非背景 · 16:9 原始比例） ============ -->
+<section class="hero hero-video" data-page-node-id="zxLckHalHaY9CJousPVTPC">
+  <video class="hero-video-el" autoplay loop playsinline poster="assets/img/hero-1.png" data-page-node-id="OXGWHH006fju1lGWBwiuwS">
+    <source src="assets/media/brand-video.mp4" type="video/mp4" data-page-node-id="zkzEghuQfkhwD8Z38Vk37l" />
+    您的浏览器不支持视频播放，请升级浏览器或访问联系我们页获取资料。
+  </video>
 
-  <!-- 授权徽章：Hero 右上角浮动 -->
+  <!-- 授权徽章：右上角浮动 -->
   <a href="about.html" class="cert-badge" aria-label="查看授权证书" data-page-node-id="GhKLcaFXYyvHi6x5bCZRQs">
     <span class="cert-badge-icon" aria-hidden="true" data-page-node-id="nmylcjQ8xF3sHOG6xMxD5W">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="AcBMxLzOxjxl5uNVsamMXX">
@@ -58,8 +57,23 @@
     </span>
   </a>
 
+  <!-- 声音开关：浏览器默认禁止带声音自动播放，点此开启 -->
+  <button class="video-sound-toggle" type="button" aria-label="开启或关闭声音" data-page-node-id="sndTgl">
+    <span class="snd-icon" aria-hidden="true">🔊</span>
+    <span class="snd-text" data-page-node-id="sndTxt">声音：开</span>
+  </button>
+
+  <!-- 向下滚动提示 -->
+  <a href="#intro" class="scroll-hint" aria-label="向下滚动了解我们" data-page-node-id="scrHint">
+    <span>了解更多</span>
+    <span class="scroll-arrow" aria-hidden="true">↓</span>
+  </a>
+</section>
+
+<!-- ============ 品牌主张（首屏视频下方） ============ -->
+<section class="intro-band" id="intro" data-page-node-id="introBand">
   <div class="container" data-page-node-id="rhTqyjN4Grf7CZxVtC1DWr">
-    <span class="eyebrow-pill" style="background: rgba(255,255,255,.14); color: #fff;" data-page-node-id="W1ZFP4R3HOGlXhUJa8PxLJ">SKF 江苏区域授权经销商 · 技术传承始于 1907</span>
+    <span class="eyebrow-pill" data-page-node-id="W1ZFP4R3HOGlXhUJa8PxLJ">SKF 江苏区域授权经销商 · 技术传承始于 1907</span>
     <h1 style="margin-top: var(--space-4);" data-page-node-id="N3Be6ApFM9loB9bvKizflR">让关键设备<br data-page-node-id="ORGciCGkoY32WUH3tzGItc"/>更可靠地运转</h1>
     <p class="lead" data-page-node-id="PhDlWeANPLC467RP52XRBh">SKF 授权产品 × 江苏本地化服务——从正品供应、本地库存到现场技术支持，</p>
     <p class="lead-punchline" data-page-node-id="Ix21mDVSKNKyQOan27hVwj">您关心的每一个环节，本地就能解决。</p>
@@ -338,5 +352,30 @@
     </div>
 </footer>
 
+<script>
+  (function () {
+    var v = document.querySelector('.hero-video-el');
+    if (!v) return;
+    var toggle = document.querySelector('.video-sound-toggle');
+    var txt = document.querySelector('.snd-text');
+    function setLabel() { if (txt) txt.textContent = v.muted ? '声音：关' : '声音：开'; }
+    // 尝试带声音自动播放（多数浏览器会拦截，退化为静音自动播放）
+    var p = v.play();
+    if (p && p.catch) {
+      p.catch(function () {
+        v.muted = true; setLabel();
+        v.play().catch(function () {});
+      });
+    }
+    if (toggle) {
+      toggle.addEventListener('click', function () {
+        v.muted = !v.muted;
+        if (!v.muted) { v.play().catch(function () {}); }
+        setLabel();
+      });
+    }
+    setLabel();
+  })();
+</script>
 </body>
 </html>
