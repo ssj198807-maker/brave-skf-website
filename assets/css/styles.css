@@ -1041,3 +1041,11 @@ ul { margin: 0; padding-left: 1.2em; }
 .download-info { flex: 1; min-width: 220px; }
 .download-info h4 { font-size: 16px; margin: 0 0 4px; color: var(--ink-900); }
 .download-info p { font-size: 13px; color: var(--ink-500); margin: 0; }
+
+/* ===== 区域经销商标识（合规：仅使用 SKF 官方"区域经销商标识"，尺寸 ≤ 自有 logo） ===== */
+.footer-distributor { margin-top: var(--space-3); }
+.footer-distributor img { height: 30px; width: auto; background: #fff; padding: 5px 9px; border-radius: var(--r-sm); display: inline-block; }
+.footer-disclaimer { display: block; max-width: 560px; line-height: 1.6; margin-top: 3px; }
+.header-distributor { height: 22px; width: auto; margin-left: var(--space-3); align-self: center; }
+@media (max-width: 640px) { .header-distributor { display: none; } }
+.qr-placeholder { width: 150px; height: 150px; border: 2px dashed var(--line); border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; text-align: center; color: var(--ink-400); font-size: 12px; line-height: 1.5; background: var(--paper-2); margin-top: var(--space-3); }
