@@ -1866,3 +1866,145 @@ ul { margin: 0; padding-left: 1.2em; }
   border-left: 2px solid var(--bf-blue-500);
 }
 .overlay-hero .actions { margin-top: var(--space-6); }
+
+/* ============================================================
+   首页专用：信任条 / 能力矩阵 / 视频过渡
+   ============================================================ */
+
+/* ① 信任条：紧接首屏视频，横排四栏深蓝底 */
+.trustbar {
+  background: var(--bf-blue-900);
+  padding: var(--space-6) 0;
+}
+.trustbar .tb-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+}
+.tb-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding-left: var(--space-4);
+  border-left: 2px solid rgba(255,255,255,.22);
+}
+.tb-item b {
+  display: block;
+  font-size: var(--fs-h3);
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin-bottom: 2px;
+}
+.tb-item span {
+  font-size: var(--fs-caption);
+  color: rgba(255,255,255,.72);
+  line-height: 1.6;
+}
+@media (max-width: 900px) { .trustbar .tb-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-4); } }
+@media (max-width: 480px) { .trustbar .tb-grid { grid-template-columns: 1fr; } }
+
+/* ② 首屏视频底部渐变过渡：接住下一屏，避免断层 */
+.hero.hero-video::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 160px;
+  background: linear-gradient(to top, rgba(10,44,82,.55), transparent);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ③ 能力矩阵：3×2 大图卡片（合并原五大能力+双轴+流程） */
+.cap-matrix {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+.cap-tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  isolation: isolate;
+  background: var(--bf-blue-900);
+  transition: transform var(--t-fast), box-shadow var(--t-fast);
+}
+.cap-tile:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.cap-tile .ct-media { position: absolute; inset: 0; z-index: 0; }
+.cap-tile .ct-media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform var(--t-mid);
+}
+.cap-tile:hover .ct-media img { transform: scale(1.05); }
+/* 底部渐变保证文字可读 */
+.cap-tile .ct-media::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(to top,
+    rgba(10,44,82,.94) 0%,
+    rgba(10,44,82,.78) 34%,
+    rgba(10,44,82,.34) 68%,
+    rgba(10,44,82,.12) 100%);
+}
+.cap-tile .ct-body {
+  position: relative; z-index: 1;
+  padding: var(--space-5);
+  color: #fff;
+}
+.cap-tile .ct-num {
+  display: inline-block;
+  font-size: var(--fs-label);
+  letter-spacing: .16em;
+  color: rgba(255,255,255,.66);
+  margin-bottom: var(--space-2);
+}
+.cap-tile h3 {
+  font-size: var(--fs-h3);
+  color: #fff;
+  margin-bottom: var(--space-2);
+  line-height: 1.35;
+}
+.cap-tile p {
+  font-size: var(--fs-caption);
+  color: rgba(255,255,255,.82);
+  line-height: 1.7;
+  margin: 0;
+}
+@media (max-width: 1000px) { .cap-matrix { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px)  {
+  .cap-matrix { grid-template-columns: 1fr; }
+  .cap-tile { min-height: 240px; }
+}
+
+/* ④ 首页行业覆盖蒙版：六大行业标签浮于图上 */
+.industry-overlay .op-media img { object-position: center 45%; }
+.io-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+.io-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(8px);
+  font-size: var(--fs-caption);
+  color: #fff;
+  transition: background var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
+}
+.io-tag:hover {
+  background: rgba(255,255,255,.18);
+  border-color: rgba(255,255,255,.5);
+  transform: translateY(-2px);
+}
+.io-tag b { font-weight: 500; }
