@@ -517,8 +517,7 @@ ul { margin: 0; padding-left: 1.2em; }
 .hero.hero-video {
   position: relative;
   height: 100vh;
-  padding: 0;                 /* 覆盖 .hero 基础上下 padding，让视频真正占满 100vh */
-  background: #000;
+  padding: 0;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -530,7 +529,6 @@ ul { margin: 0; padding-left: 1.2em; }
   object-fit: contain;        /* 完整显示不裁切：保证视频画面一字不差全部可见 */
   object-position: center center;
   display: block;
-  background: #000;
 }
 /* 授权徽章：视频右上角浮动 */
 .hero.hero-video .cert-badge { z-index: 3; }
@@ -1851,15 +1849,6 @@ ul { margin: 0; padding-left: 1.2em; }
 @media (max-width: 480px) { .trustbar .tb-grid { grid-template-columns: 1fr; } }
 
 /* ② 首屏视频底部渐变过渡：接住下一屏，避免断层 */
-.hero.hero-video::before {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 160px;
-  background: linear-gradient(to top, rgba(10,44,82,.55), transparent);
-  z-index: 1;
-  pointer-events: none;
-}
 
 /* ③ 能力矩阵：3×2 大图卡片（合并原五大能力+双轴+流程） */
 .cap-matrix {
@@ -2090,3 +2079,25 @@ ul { margin: 0; padding-left: 1.2em; }
 /* 按钮：主按钮白底深蓝字（反色），次按钮透明底白字 */
 .trustbar .tb-claim-actions .btn-primary { color: var(--bf-blue-900); }
 .trustbar .tb-claim-actions .btn-ghost { color: #fff; }
+
+/* ============================================================
+   首屏视频两侧填充色与下方衔接
+   问题: 视频 16:9, 宽屏下 contain 模式两侧露出 .hero-video 的 #000 纯黑,
+         而下方 trustbar 是 --bf-blue-900(#0a2c52) 深蓝 → 色差明显, 像两块补丁。
+   方案: 把填充色统一为下方深蓝 var(--bf-blue-900), 两侧与下方浑然一体。
+   ============================================================ */
+.hero.hero-video {
+  background: var(--bf-blue-900);   /* 原 #000 → 与下方 trustbar 同色 */
+}
+.hero.hero-video .hero-video-el {
+  background: transparent;          /* 视频元素自身不再垫黑底, 透出容器深蓝 */
+}
+/* 底部渐变过渡同步加深, 让视频画面平滑溶入下方深蓝区 */
+.hero.hero-video::before {
+  background: linear-gradient(to top,
+    var(--bf-blue-900) 0%,
+    rgba(10,44,82,.78) 38%,
+    rgba(10,44,82,.28) 72%,
+    transparent 100%);
+  height: 200px;
+}
