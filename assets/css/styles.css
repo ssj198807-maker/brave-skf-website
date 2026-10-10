@@ -539,7 +539,7 @@ ul { margin: 0; padding-left: 1.2em; }
 .hero.hero-video .hero-video-el {
   width: 100%;
   height: 100%;
-  object-fit: cover;          /* 铺满整屏：16:9 屏上无裁切；其他比例屏裁掉少量边缘以保证铺满 */
+  object-fit: contain;        /* 完整显示不裁切：保证视频画面一字不差全部可见 */
   object-position: center center;
   display: block;
   background: #000;
@@ -1452,6 +1452,7 @@ ul { margin: 0; padding-left: 1.2em; }
   backdrop-filter: blur(6px);
 }
 .overlay-hero h1 {
+  color: #fff;
   font-size: var(--fs-h1);
   line-height: 1.18;
   margin: var(--space-4) 0 var(--space-5);
@@ -1511,6 +1512,7 @@ ul { margin: 0; padding-left: 1.2em; }
   color: #fff;
 }
 .page-hero h1 {
+  color: #fff;
   font-size: var(--fs-h1);
   line-height: 1.18;
   margin: var(--space-4) 0 var(--space-4);
@@ -1722,3 +1724,19 @@ ul { margin: 0; padding-left: 1.2em; }
 @media (max-width: 1000px) { .lifecycle { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 620px)  { .lifecycle { grid-template-columns: repeat(2, 1fr); } .lc-step:not(:last-child)::after { display: none; } }
 @media (max-width: 400px)  { .lifecycle { grid-template-columns: 1fr; } }
+
+
+/* ============================================================
+   蒙版内文字颜色修正（对齐 cases-hero 写法）
+   原因：全局 h1,h2,h3,h4 { color: var(--ink-900) } 会覆盖父容器的 color:#fff
+   → 蒙版上出现黑字。必须对蒙版内标题显式设白字。
+   ============================================================ */
+.overlay-hero h1, .overlay-hero h2, .overlay-hero h3,
+.overlay-hero h4, .overlay-hero .lead, .overlay-hero p,
+.page-hero h1, .page-hero h2, .page-hero h3,
+.page-hero h4, .page-hero .lead, .page-hero p {
+  color: #fff;
+}
+.overlay-hero .lead, .page-hero .lead { color: rgba(255,255,255,.88); }
+.oh-fact span { color: rgba(255,255,255,.72); }
+.lc-step h4 { color: var(--ink-900); }
