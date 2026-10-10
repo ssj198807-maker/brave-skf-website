@@ -1852,3 +1852,17 @@ ul { margin: 0; padding-left: 1.2em; }
     background: linear-gradient(165deg, rgba(10,44,82,.93) 0%, rgba(10,44,82,.85) 100%);
   }
 }
+
+/* 蒙版首屏的强调句（比 lead 更重一档，用于收拢主张） */
+.overlay-hero .oh-punchline {
+  color: #fff;
+  font-size: var(--fs-lead);
+  line-height: 1.8;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  max-width: 40em;
+  margin: var(--space-4) 0 0;
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--bf-blue-500);
+}
+.overlay-hero .actions { margin-top: var(--space-6); }
