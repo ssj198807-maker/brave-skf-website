@@ -2008,3 +2008,44 @@ ul { margin: 0; padding-left: 1.2em; }
   transform: translateY(-2px);
 }
 .io-tag b { font-weight: 500; }
+
+/* ============================================================
+   证书类蒙版专用：完整显示证书, 不裁切
+   证书图是接近方形的比例(1.41), 用 cover 必然裁掉上下,
+   �� contain + 右对齐停靠, 保证证书完整可见且不被文字压住。
+   ============================================================ */
+.overlay-panel.cert-overlay .op-media img {
+  object-fit: contain;              /* 完整显示, 不裁切 */
+  object-position: right center;    /* 靠右停靠, 左侧留给文字 */
+  /* contain 后左右会留空, 用背景色填满, 避免出现白边 */
+  background: var(--bf-blue-900);
+}
+/* 蒙版渐变调整为「左侧文字区更重」, 中间过渡, 右侧几乎透明让证书清晰 */
+.overlay-panel.cert-overlay .op-media::after {
+  background:
+    linear-gradient(100deg,
+      rgba(10,44,82,.96) 0%,
+      rgba(10,44,82,.92) 40%,
+      rgba(10,44,82,.68) 56%,
+      rgba(10,44,82,.18) 74%,
+      rgba(10,44,82,.06) 100%),
+    linear-gradient(to top, rgba(10,44,82,.5), transparent 42%);
+}
+/* 容器加高, 给方形证书留出完整高度 */
+.overlay-panel.cert-overlay .op-body {
+  padding: var(--section-pad-lg) 0;
+}
+@media (max-width: 1100px) {
+  /* 中等屏幕: 证书缩小但仍完整, 文字区保持可读 */
+  .overlay-panel.cert-overlay .op-media img { object-position: right center; }
+}
+@media (max-width: 820px) {
+  /* 窄屏: 证书居中偏右, 蒙版整体压暗保证文字可读 */
+  .overlay-panel.cert-overlay .op-media img { object-position: 72% center; }
+  .overlay-panel.cert-overlay .op-media::after {
+    background: linear-gradient(165deg,
+      rgba(10,44,82,.94) 0%,
+      rgba(10,44,82,.88) 55%,
+      rgba(10,44,82,.80) 100%);
+  }
+}
