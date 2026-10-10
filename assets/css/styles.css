@@ -525,7 +525,6 @@ ul { margin: 0; padding-left: 1.2em; }
 
 /* -------- Hero (image background variant) -------- */
 /* -------- Hero：SKF 式全屏沉浸视频首屏 -------- */
-/* -------- Hero：SKF 式全屏视频播放器（带声音 · 非背景 · 16:9 原始比例） -------- */
 .hero.hero-video {
   position: relative;
   height: 100vh;
@@ -587,20 +586,6 @@ ul { margin: 0; padding-left: 1.2em; }
 @keyframes scrollBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 
 /* -------- 视频下方品牌主张 -------- */
-.intro-band {
-  background: var(--paper);
-  padding: var(--space-9) 0;
-  text-align: center;
-}
-.intro-band .eyebrow-pill { background: var(--bf-blue-50); color: var(--bf-blue-900); }
-.intro-band h1 { color: var(--ink-900); max-width: 880px; margin-left: auto; margin-right: auto; }
-.intro-band .lead,
-.intro-band .lead-punchline { color: var(--ink-700); margin-left: auto; margin-right: auto; }
-.intro-band .actions { justify-content: center; }
-.intro-band .btn-primary { background: var(--bf-blue-900); color: #fff; }
-.intro-band .btn-primary:hover { background: var(--bf-blue-700); }
-.intro-band .btn-ghost { color: var(--bf-blue-900); border-color: var(--bf-blue-900); }
-.intro-band .btn-ghost:hover { background: var(--bf-blue-50); }
 
 /* -------- Lifecycle infographic (SVG process) -------- */
 .lifecycle {
@@ -1043,8 +1028,7 @@ ul { margin: 0; padding-left: 1.2em; }
   .menu-toggle { display: block; }
   .hero { padding: var(--space-7) 0 var(--space-6); }
   .hero.hero-video { min-height: 100svh; height: 100svh; padding: 0; }
-  .intro-band { padding: var(--space-7) 0; }
-  .section { padding: var(--space-7) 0; }
+    .section { padding: var(--space-7) 0; }
 }
 
 /* -------- Recruitment -------- */
@@ -1536,33 +1520,6 @@ ul { margin: 0; padding-left: 1.2em; }
   .overlay-hero .oh-facts { gap: var(--space-5); }
 }
 
-/* ③ 品牌主张区：左侧蓝竖线 + 分级字距（解决"文字裸奔"） */
-.claim-block {
-  border-left: 3px solid var(--bf-blue-500);
-  padding-left: var(--space-6);
-  margin-bottom: var(--space-6);
-}
-.claim-block h1 {
-  font-size: var(--fs-h1);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  margin: var(--space-3) 0 var(--space-5);
-}
-.claim-block .lead {
-  font-size: var(--fs-lead);
-  line-height: 1.85;
-  color: var(--ink-700);
-  max-width: 40em;
-  margin: 0 0 var(--space-3);
-}
-.claim-block .lead-punchline {
-  font-size: var(--fs-lead);
-  line-height: 1.85;
-  color: var(--bf-blue-700);
-  font-weight: 500;
-  margin: 0;
-}
-
 /* ④ 卡片图像化：biz-card / cap-card 加图 */
 .biz-card {
   background: var(--paper);
@@ -1724,7 +1681,6 @@ ul { margin: 0; padding-left: 1.2em; }
 @media (max-width: 1000px) { .lifecycle { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 620px)  { .lifecycle { grid-template-columns: repeat(2, 1fr); } .lc-step:not(:last-child)::after { display: none; } }
 @media (max-width: 400px)  { .lifecycle { grid-template-columns: 1fr; } }
-
 
 /* ============================================================
    蒙版内文字颜色修正（对齐 cases-hero 写法）
@@ -2048,4 +2004,76 @@ ul { margin: 0; padding-left: 1.2em; }
       rgba(10,44,82,.88) 55%,
       rgba(10,44,82,.80) 100%);
   }
+}
+
+/* ============================================================
+   信任条双层结构（主张 + 四栏背书）
+   原 intro-band 浅底屏已合并至此，消除视频与信任条之间的视觉断层
+   ============================================================ */
+.trustbar { padding: var(--space-8) 0 var(--space-6); }
+
+/* 上层：品牌主张 */
+.tb-claim {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-7);
+  padding-bottom: var(--space-6);
+  margin-bottom: var(--space-6);
+  border-bottom: 1px solid rgba(255,255,255,.18);
+}
+.tb-eyebrow {
+  display: block;
+  font-size: var(--fs-label);
+  letter-spacing: .16em;
+  color: rgba(255,255,255,.62);
+  margin-bottom: var(--space-3);
+}
+.tb-claim h2 {
+  font-size: var(--fs-h2);
+  line-height: 1.2;
+  letter-spacing: -0.018em;
+  color: #fff;
+  margin: 0 0 var(--space-3);
+  max-width: 18em;
+}
+.tb-claim p {
+  font-size: var(--fs-lead);
+  line-height: 1.75;
+  color: rgba(255,255,255,.78);
+  margin: 0;
+  max-width: 46em;
+}
+.tb-claim p b { color: #fff; font-weight: 500; }
+.tb-claim-actions {
+  display: flex;
+  gap: var(--space-3);
+  flex-shrink: 0;
+  padding-bottom: var(--space-1);
+}
+.tb-claim-actions .btn-primary {
+  background: #fff; color: var(--bf-blue-900);
+  border-color: #fff;
+}
+.tb-claim-actions .btn-primary:hover {
+  background: var(--bf-blue-100); border-color: var(--bf-blue-100);
+}
+.tb-claim-actions .btn-ghost {
+  background: transparent; color: #fff; border-color: rgba(255,255,255,.42);
+}
+.tb-claim-actions .btn-ghost:hover {
+  background: rgba(255,255,255,.12); color: #fff;
+}
+
+@media (max-width: 1000px) {
+  .tb-claim { flex-direction: column; align-items: flex-start; gap: var(--space-5); }
+  .tb-claim-actions { padding-bottom: 0; }
+  .tb-claim h2 { max-width: none; }
+}
+@media (max-width: 620px) {
+  .trustbar { padding: var(--space-7) 0 var(--space-5); }
+  .tb-claim h2 { font-size: var(--fs-h3); }
+  .tb-claim p { font-size: var(--fs-body); }
+  .tb-claim-actions { flex-wrap: wrap; }
+  .trustbar .tb-grid { grid-template-columns: 1fr; gap: var(--space-3); }
 }
