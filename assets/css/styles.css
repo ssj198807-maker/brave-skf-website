@@ -1294,88 +1294,12 @@ ul { margin: 0; padding-left: 1.2em; }
 /* ============================================================
    服务页交错图文布局（根治"图文比例失衡"）
    ============================================================ */
-.svc-block {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-8);
-  align-items: center;
-  padding: var(--section-pad-lg) 0;
-  border-bottom: 1px solid var(--line);
-}
-.svc-block:last-of-type { border-bottom: 0; }
-
-/* 偶数板块：图在右，文字在左（制造 Z 字形视觉节奏） */
-.svc-block.is-reversed { direction: rtl; }
-.svc-block.is-reversed > * { direction: ltr; }
-
-.svc-figure { margin: 0; }
-.svc-figure img {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  border-radius: var(--r-lg);
-  box-shadow: var(--shadow-md);
-  display: block;
-}
-.svc-figure figcaption {
-  margin-top: var(--space-3);
-  font-size: var(--fs-caption);
-  color: var(--ink-500);
-  line-height: 1.6;
-  padding-left: var(--space-3);
-  border-left: 2px solid var(--bf-blue-500);
-}
-
-.svc-body .label-num {
-  display: inline-block;
-  font-size: var(--fs-label);
-  color: var(--bf-blue-700);
-  font-weight: 500;
-  letter-spacing: .14em;
-  margin-bottom: var(--space-3);
-}
-.svc-body h3 {
-  font-size: var(--fs-h2);
-  margin-bottom: var(--space-5);
-  letter-spacing: -0.015em;
-}
-.svc-points { display: grid; gap: var(--space-4); margin-bottom: var(--space-5); }
-.svc-point { padding-left: var(--space-4); border-left: 2px solid var(--line); }
-.svc-point h4 {
-  font-size: var(--fs-body);
-  font-weight: 500;
-  color: var(--ink-900);
-  margin-bottom: var(--space-1);
-}
-.svc-point p {
-  font-size: var(--fs-caption);
-  color: var(--ink-700);
-  line-height: 1.75;
-  margin: 0;
-}
-.svc-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: var(--fs-caption);
-  font-weight: 500;
-  color: var(--bf-blue-700);
-  border-bottom: 1px solid var(--bf-blue-500);
-  padding-bottom: 2px;
-  transition: gap var(--t-fast), color var(--t-fast);
-}
-.svc-cta:hover { gap: var(--space-3); color: var(--bf-blue-900); }
 
 /* 平板：单列但保持图文比例 */
 @media (max-width: 900px) {
-  .svc-block { grid-template-columns: 1fr; gap: var(--space-6); padding: var(--section-pad-md) 0; }
-  .svc-block.is-reversed { direction: ltr; }
-  .svc-figure { order: -1; }
-}
+    }
 @media (max-width: 600px) {
-  .svc-body h3 { font-size: var(--fs-h3); }
-  .svc-figure img { aspect-ratio: 4 / 3; }
-}
+    }
 
 /* ============================================================
    蒙版浮层体系（Overlay System）—— 文字压在图上的标准做法
@@ -2101,3 +2025,228 @@ ul { margin: 0; padding-left: 1.2em; }
     transparent 100%);
   height: 200px;
 }
+
+/* ============================================================
+   服务页 2×3 网格卡片（替代原左右交错分栏）
+   改动理由: 交错分栏让视线每个板块都横向折返, 且 direction:rtl 实现反序
+             有隐患。改为网格后视线一路向下, 且与首页 cap-matrix 风格统一。
+   ============================================================ */
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+}
+.svc-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  scroll-margin-top: 80px;
+  transition: transform var(--t-fast), box-shadow var(--t-fast), border-color var(--t-fast);
+}
+.svc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--bf-blue-100);
+}
+.svc-card .sc-media { position: relative; overflow: hidden; background: var(--paper-3); }
+.svc-card .sc-media img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--t-mid);
+}
+.svc-card:hover .sc-media img { transform: scale(1.04); }
+/* 图片底部的编号角标 */
+.svc-card .sc-num {
+  position: absolute; left: var(--space-4); bottom: var(--space-4);
+  background: rgba(10,44,82,.82);
+  color: #fff;
+  font-size: var(--fs-label);
+  letter-spacing: .12em;
+  padding: 4px 10px;
+  border-radius: var(--r-sm);
+  backdrop-filter: blur(4px);
+}
+.svc-card .sc-body {
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.svc-card h3 {
+  font-size: var(--fs-h3);
+  line-height: 1.35;
+  margin-bottom: var(--space-4);
+  color: var(--ink-900);
+}
+.svc-card .sc-points {
+  display: grid;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+  flex: 1;
+}
+.svc-card .sc-point { padding-left: var(--space-3); border-left: 2px solid var(--line); }
+.svc-card .sc-point h4 {
+  font-size: var(--fs-caption);
+  font-weight: 500;
+  color: var(--bf-blue-700);
+  margin-bottom: 2px;
+}
+.svc-card .sc-point p {
+  font-size: var(--fs-caption);
+  color: var(--ink-700);
+  line-height: 1.7;
+  margin: 0;
+}
+.svc-card .sc-cta {
+  font-size: var(--fs-caption);
+  font-weight: 500;
+  color: var(--bf-blue-700);
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  transition: gap var(--t-fast);
+}
+.svc-card:hover .sc-cta { gap: var(--space-3); }
+.svc-card .sc-cap {
+  font-size: var(--fs-label);
+  color: var(--ink-500);
+  line-height: 1.6;
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 900px) { .svc-grid { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   行业案例 3 列网格卡片（替代左右交错分栏）
+   为何不用 2 列: 每个行业含 12 条列表项 + 三组分类, 2 列会让每组
+   仅剩约 180px 宽, 中文长句全挤在一起。3 列可保证阅读舒适度。
+   ============================================================ */
+.ind-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+.ind-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: transform var(--t-fast), box-shadow var(--t-fast), border-color var(--t-fast);
+}
+.ind-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--bf-blue-100);
+}
+.ind-card .ic-media { position: relative; overflow: hidden; background: var(--paper-3); }
+.ind-card .ic-media img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--t-mid);
+}
+.ind-card:hover .ic-media img { transform: scale(1.04); }
+/* 图片上的编号 + 英文标签角标 */
+.ind-card .ic-badge {
+  position: absolute; left: var(--space-4); bottom: var(--space-4);
+  display: flex; align-items: center; gap: var(--space-3);
+}
+.ind-card .ic-num {
+  background: rgba(10,44,82,.86);
+  color: #fff;
+  font-size: var(--fs-h3);
+  font-weight: 500;
+  line-height: 1;
+  width: 38px; height: 38px;
+  border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.ind-card .ic-en {
+  background: rgba(10,44,82,.7);
+  color: #fff;
+  font-size: var(--fs-label);
+  letter-spacing: .1em;
+  padding: 4px 10px;
+  border-radius: var(--r-sm);
+  backdrop-filter: blur(4px);
+}
+.ind-card .ic-body { padding: var(--space-5); display: flex; flex-direction: column; flex: 1; }
+.ind-card h3 {
+  font-size: var(--fs-h3);
+  line-height: 1.35;
+  margin-bottom: var(--space-3);
+  color: var(--ink-900);
+}
+.ind-card .ic-tagline {
+  font-size: var(--fs-caption);
+  color: var(--bf-blue-700);
+  line-height: 1.65;
+  margin: 0 0 var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--line);
+}
+.ind-card .ic-group { margin-bottom: var(--space-4); }
+.ind-card .ic-group h4 {
+  font-size: var(--fs-label);
+  color: var(--ink-500);
+  letter-spacing: .06em;
+  margin-bottom: var(--space-2);
+  display: flex; align-items: center; gap: var(--space-2);
+}
+.ind-card .ic-group h4::before {
+  content: "";
+  width: 3px; height: 12px;
+  background: var(--bf-blue-500);
+  border-radius: 1px;
+}
+.ind-card .ic-group ul { margin: 0; padding: 0; list-style: none; }
+.ind-card .ic-group li {
+  font-size: var(--fs-caption);
+  color: var(--ink-700);
+  line-height: 1.6;
+  padding: var(--space-1) 0 var(--space-1) var(--space-3);
+  position: relative;
+}
+.ind-card .ic-group li::before {
+  content: "";
+  position: absolute; left: 0; top: 11px;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--bf-blue-500);
+  opacity: .55;
+}
+.ind-card .ic-footer {
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+}
+.ind-card .ic-footer h5 {
+  font-size: var(--fs-label);
+  color: var(--ink-900);
+  font-weight: 500;
+  margin-bottom: var(--space-2);
+}
+.ind-card .ic-footer p {
+  font-size: var(--fs-label);
+  color: var(--ink-500);
+  line-height: 1.7;
+  margin: 0 0 var(--space-4);
+}
+.ind-card .ic-link {
+  font-size: var(--fs-caption);
+  font-weight: 500;
+  color: var(--bf-blue-700);
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  transition: gap var(--t-fast);
+}
+.ind-card:hover .ic-link { gap: var(--space-3); }
+@media (max-width: 1100px) { .ind-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 720px)  { .ind-grid { grid-template-columns: 1fr; } }
