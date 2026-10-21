@@ -9,7 +9,7 @@
   <title>关于倍富 · 倍富工业服务</title>
   <meta name="description" content="倍富工业服务（江苏）有限公司 · SKF 授权经销商，正规授权、本地仓储、现场技术服务能力一览。" />
   <link rel="icon" type="image/png" href="assets/img/logo.png" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=20261016" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261021" />
 </head>
 <body>
 
@@ -23,12 +23,12 @@
       </span>
       <img class="header-distributor" src="assets/img/distributor-mark-horizontal.png" alt="SKF 区域经销商" />
     </a>
-    <button class="menu-toggle" aria-label="切换菜单" onclick="document.getElementById('nav').classList.toggle('is-open')">
+    <button class="menu-toggle" aria-label="打开导航菜单" type="button" aria-controls="nav" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <nav class="nav" id="nav">
       <a href="index.html">首页</a>
-      <a href="about.html" class="is-active">关于倍富</a>
+      <a href="about.html" class="is-active" aria-current="page">关于倍富</a>
       <a href="why-us.html">为什么选倍富</a>
       <a href="services.html">服务能力</a>
       <a href="cases.html">行业案例</a>
@@ -51,33 +51,53 @@
   </div>
 </section>
 
-<!-- 证书主证据（蒙版：证书完整显示 + 数据徽章浮于旁侧） -->
-<section class="overlay-panel cert-overlay">
-  <div class="op-media">
-    <img src="assets/img/cert-watermarked.jpg" alt="SKF 授权经销商证书" />
-  </div>
-  <div class="op-body">
-    <div class="container">
+<!-- 授权证书：完整展示，信息与核验入口并列 -->
+<section class="section certificate-section" id="authorization">
+  <div class="container certificate-layout">
+    <figure class="certificate-preview">
+      <button class="certificate-open" type="button" data-certificate-open aria-controls="certificate-dialog" aria-haspopup="dialog" aria-label="放大查看 SKF 授权经销商证书">
+        <img src="assets/img/cert-watermarked.jpg" alt="SKF 江苏区域经销商授权证书，授权编号 RD-JSCH" width="1028" height="727" loading="lazy" />
+        <span class="certificate-zoom">放大查看证书 ↗</span>
+      </button>
+      <figcaption>完整证书展示 · <a href="assets/img/cert-watermarked.jpg" target="_blank" rel="noopener noreferrer">在新窗口查看原图 ↗</a></figcaption>
+    </figure>
+    <div class="certificate-copy">
       <span class="eyebrow">SKF CERTIFICATE · 授权证书</span>
       <h2>SKF 授权经销商证书</h2>
-      <p class="lead">证书原件如右所示，授权状态与产品范围以 SKF 官方核验结果为准。采购前如需核验授权范围或索取证书副本，我们可即时提供。</p>
-      <div class="cert-badges" style="margin-top: var(--space-6); max-width: 720px;">
-        <div class="cert-badge-item">
-          <b>RD-JSCH</b>
-          <span>授权编号</span>
+      <p>倍富工业服务（江苏）有限公司持有 SKF 江苏区域经销商授权。采购前，您可以核验授权范围，或联系我们索取证书副本。</p>
+      <dl class="certificate-facts">
+        <div>
+          <dt>授权编号</dt>
+          <dd>RD-JSCH</dd>
         </div>
-        <div class="cert-badge-item">
-          <b>2026.12.31</b>
-          <span>证书有效期</span>
+        <div>
+          <dt>证书有效期至</dt>
+          <dd>2026.12.31</dd>
         </div>
-        <div class="cert-badge-item">
-          <b>工业全系列</b>
-          <span>授权产品范围</span>
+        <div>
+          <dt>授权区域</dt>
+          <dd>江苏省</dd>
         </div>
+        <div>
+          <dt>授权产品范围</dt>
+          <dd>SKF 工业全系列</dd>
+        </div>
+      </dl>
+      <div class="certificate-actions">
+        <a href="contact.html" class="btn btn-primary">联系核验授权 / 索取副本 →</a>
       </div>
+      <p class="certificate-note">授权状态、区域与产品范围，以当期有效授权文件及 SKF 官方核验结果为准。</p>
     </div>
   </div>
 </section>
+
+<dialog class="certificate-dialog" id="certificate-dialog" aria-labelledby="certificate-dialog-title">
+  <div class="certificate-dialog-head">
+    <h2 id="certificate-dialog-title">SKF 授权经销商证书</h2>
+    <button type="button" class="certificate-close" data-certificate-close aria-label="关闭证书预览">关闭 ×</button>
+  </div>
+  <img src="assets/img/cert-watermarked.jpg" alt="完整 SKF 江苏区域经销商授权证书，授权编号 RD-JSCH" width="1028" height="727" />
+</dialog>
 
 <!-- 仓储与供应能力 -->
 <section class="overlay-panel">
@@ -193,6 +213,8 @@
   </div>
 </footer>
 
+  <script src="assets/js/certificate.js?v=20261021" defer></script>
   <script src="https://trtc.io/knocket-sdk/sdk.js?identifier=155f077a337d958ac4&v=1792134145020" async></script>
+  <script src="assets/js/site.js?v=20261021" defer></script>
 </body>
 </html>

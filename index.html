@@ -12,7 +12,7 @@
   <meta property="og:description" content="SKF 授权产品 × 江苏本地化服务，让关键设备更可靠地运转。" data-page-node-id="8oP4Y2AilAG5foks5WKF4d" />
   <meta property="og:type" content="website" data-page-node-id="YMlTC7w0bFunjYb704i94o" />
   <link rel="icon" type="image/png" href="assets/img/logo.png" data-page-node-id="LpUaDuN9KKZfbabPyvuisD" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=20261016" data-page-node-id="gkImMJR1zMAEllWzDazOMx" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261021" data-page-node-id="gkImMJR1zMAEllWzDazOMx" />
 </head>
 <body data-page-node-id="rVO0BWXRMHR2quMNBQkoC6">
 
@@ -26,11 +26,11 @@
       </span>
       <img class="header-distributor" src="assets/img/distributor-mark-horizontal.png" alt="SKF 区域经销商" data-page-node-id="9PRgKG3VVqMC2xmDuUdMhG" />
     </a>
-    <button class="menu-toggle" aria-label="切换菜单" onclick="document.getElementById('nav').classList.toggle('is-open')" data-page-node-id="05uFBrAF6xU8GfY6eyh8eb">
+    <button class="menu-toggle" aria-label="打开导航菜单" type="button" aria-controls="nav" aria-expanded="false" data-page-node-id="05uFBrAF6xU8GfY6eyh8eb">
       <span data-page-node-id="mNjNXMpCbjdxw2ee9Wp9KX"></span><span data-page-node-id="yRMmggZ0jkudEU5zB6xhvG"></span><span data-page-node-id="KdfCAGQ1aBuQxkPCGFEz7K"></span>
     </button>
     <nav class="nav" id="nav" data-page-node-id="WyUB7oylhEEw1wDESHEamc">
-      <a href="index.html" class="is-active">首页</a>
+      <a href="index.html" class="is-active" aria-current="page">首页</a>
       <a href="about.html">关于倍富</a>
       <a href="why-us.html">为什么选倍富</a>
       <a href="services.html">服务能力</a>
@@ -41,67 +41,38 @@
   </div>
 </header>
 
-<!-- ============ HERO：SKF 式全屏视频（带声音 · 非背景 · 16:9 原始比例） ============ -->
-<section class="hero hero-video" data-page-node-id="zxLckHalHaY9CJousPVTPC">
-  <video class="hero-video-el" autoplay loop playsinline poster="assets/img/hero-1.png" data-page-node-id="OXGWHH006fju1lGWBwiuwS">
-    <source src="assets/media/brand-video.mp4" type="video/mp4" data-page-node-id="zkzEghuQfkhwD8Z38Vk37l" />
-    您的浏览器不支持视频播放，请升级浏览器或访问联系我们页获取资料。
-  </video>
-
-
-  <!-- 声音开关：浏览器默认禁止带声音自动播放，点此开启 -->
-  <button class="video-sound-toggle" type="button" aria-label="开启或关闭声音" data-page-node-id="sndTgl">
-    <span class="snd-icon" aria-hidden="true">🔊</span>
-    <span class="snd-text" data-page-node-id="sndTxt">声音：开</span>
-  </button>
-
-  <!-- 向下滚动提示 -->
-  <a href="#intro" class="scroll-hint" aria-label="向下滚动了解我们" data-page-node-id="scrHint">
-    <span>了解更多</span>
-    <span class="scroll-arrow" aria-hidden="true">↓</span>
-  </a>
+<!-- 首屏：主张、咨询入口与完整比例的视频同时可见 -->
+<section class="home-hero" aria-labelledby="home-title">
+  <div class="container home-hero-layout">
+    <div class="home-hero-copy">
+      <span class="home-kicker">SKF 江苏区域授权经销商</span>
+      <h1 id="home-title">让关键设备<br/>更可靠地运转</h1>
+      <p class="home-hero-lead">SKF 授权产品 × 江苏本地化服务</p>
+      <p class="home-hero-description">从正品供应、本地库存，到现场技术支持，您关心的每一个环节，本地就能解决。</p>
+      <div class="actions">
+        <a href="contact.html" class="btn btn-primary">预约设备诊断 <span aria-hidden="true">↗</span></a>
+        <a href="services.html" class="home-secondary-link">了解服务能力 <span aria-hidden="true">→</span></a>
+      </div>
+      <a href="tel:051269177322" class="home-phone">销售热线 <span>0512-69177322</span></a>
+    </div>
+    <figure class="hero-film">
+      <div class="hero-film-frame">
+        <video controls playsinline preload="metadata" poster="assets/img/hero-1.png" aria-label="SKF 状态监测产品介绍视频" aria-describedby="hero-film-caption">
+          <source src="assets/media/brand-video.mp4" type="video/mp4" />
+          您的浏览器不支持视频播放，可<a href="assets/media/brand-video.mp4">打开视频文件</a>查看。
+        </video>
+      </div>
+      <figcaption id="hero-film-caption"><span>SKF 技术与产品</span><span>状态监测 · 从发现问题开始</span></figcaption>
+    </figure>
+  </div>
 </section>
 
-<!-- 信任条：紧接首屏视频，5 秒建立信任 -->
-<section class="trustbar" id="intro">
-  <div class="container">
-    <div class="tb-claim">
-      <div class="tb-claim-text">
-        <span class="tb-eyebrow">WHY BRAVE · 为什么选倍富</span>
-        <h2>让关键设备更可靠地运转</h2>
-        <p>SKF 授权产品 × 江苏本地化服务——从正品供应、本地库存到现场技术支持，<b>您关心的每一个环节，本地就能解决。</b></p>
-      </div>
-      <div class="tb-claim-actions">
-        <a href="contact.html" class="btn btn-primary">预约一次设备诊断</a>
-        <a href="services.html" class="btn btn-ghost">了解服务能力 →</a>
-      </div>
-    </div>
-    <div class="tb-grid">
-      <div class="tb-item">
-        <div>
-          <b>授权经销商</b>
-          <span>SKF 江苏区域授权，可核验</span>
-        </div>
-      </div>
-      <div class="tb-item">
-        <div>
-          <b>本地库存</b>
-          <span>苏州仓储常备，紧急件当日响应</span>
-        </div>
-      </div>
-      <div class="tb-item">
-        <div>
-          <b>现场服务</b>
-          <span>工程师到场，不只卖货还负责到底</span>
-        </div>
-      </div>
-      <div class="tb-item">
-        <div>
-          <b>17 年</b>
-          <span>轴承服务经验，团队真实</span>
-        </div>
-      </div>
-    </div>
+<section class="home-trust" id="intro" aria-label="倍富服务保障">
+  <div class="container home-trust-grid">
+    <a class="home-trust-item" href="about.html#authorization"><b>正规授权</b><span>SKF 江苏区域授权，可核验 <i aria-hidden="true">↗</i></span></a>
+    <div class="home-trust-item"><b>本地库存</b><span>苏州仓储常备，关键件有保障</span></div>
+    <div class="home-trust-item"><b>现场服务</b><span>从安装、润滑到状态诊断</span></div>
+    <div class="home-trust-item"><b>17 年服务经验</b><span>产品、技术与本地团队协同</span></div>
   </div>
 </section>
 
@@ -161,36 +132,39 @@
   </div>
 </section>
 
-<!-- 正品保障（蒙版：授权证书图做背景） -->
-<section class="overlay-panel cert-overlay">
-  <div class="op-media">
-    <img src="assets/img/cert-watermarked.jpg" alt="SKF 授权经销证书" />
-  </div>
-  <div class="op-body">
-    <div class="container">
-      <span class="eyebrow">AUTHENTICITY · 认准授权</span>
-      <h2>认准授权 · 谨防假冒</h2>
-      <p class="lead">SKF 轴承流通市场存在仿冒风险。请通过倍富工业服务（江苏）有限公司——SKF 江苏区域授权经销商采购：授权证书可核验，每一颗轴承来源可追溯，杜绝以次充好与翻新冒充。</p>
-      <div class="cert-badges" style="margin-top: var(--space-6); max-width: 720px;">
-        <div class="cert-badge-item">
-          <b>RD-JSCH</b>
-          <span>授权编号 · 可核验</span>
-        </div>
-        <div class="cert-badge-item">
-          <b>2026.12.31</b>
-          <span>证书有效期</span>
-        </div>
-        <div class="cert-badge-item">
-          <b>扫码溯源</b>
-          <span>每批货来源可查</span>
-        </div>
-      </div>
-      <div class="actions" style="margin-top: var(--space-6);">
-        <a href="about.html" class="btn btn-primary">核验授权资质 →</a>
-      </div>
+<!-- 证书作为独立证据展示，保持完整比例与清晰度 -->
+<section class="section certificate-section" id="authorization">
+  <div class="container certificate-layout">
+    <figure class="certificate-preview">
+      <button class="certificate-open" type="button" data-certificate-open aria-controls="certificate-dialog" aria-haspopup="dialog" aria-label="放大查看 SKF 授权证书">
+        <img src="assets/img/cert-watermarked.jpg" alt="倍富工业服务（江苏）有限公司 SKF 江苏区域经销商授权证书" width="1028" height="727" loading="lazy" />
+        <span class="certificate-zoom">放大查看证书 <span aria-hidden="true">↗</span></span>
+      </button>
+      <figcaption>授权文件完整展示 · <a href="assets/img/cert-watermarked.jpg" target="_blank" rel="noopener">在新窗口查看证书</a></figcaption>
+    </figure>
+    <div class="certificate-copy">
+      <span class="eyebrow">AUTHENTICITY · 正规授权</span>
+      <h2>信任，有据可查</h2>
+      <p>选择正规授权渠道，从核验一份证书开始。江苏倍富为您提供 SKF 授权产品与本地技术服务。</p>
+      <dl class="certificate-facts">
+        <div><dt>授权编号</dt><dd>RD-JSCH</dd></div>
+        <div><dt>证书有效期至</dt><dd>2026.12.31</dd></div>
+        <div><dt>授权区域</dt><dd>江苏省</dd></div>
+        <div><dt>授权产品范围</dt><dd>SKF 工业全系列</dd></div>
+      </dl>
+      <div class="certificate-actions"><a href="about.html#authorization" class="btn btn-primary">了解授权资质 <span aria-hidden="true">→</span></a></div>
+      <p class="certificate-note">授权状态及产品范围以当期有效授权文件与 SKF 官方核验结果为准。</p>
     </div>
   </div>
 </section>
+
+<dialog id="certificate-dialog" class="certificate-dialog" aria-labelledby="certificate-dialog-title">
+  <div class="certificate-dialog-head">
+    <h2 id="certificate-dialog-title">SKF 授权经销商证书</h2>
+    <button class="certificate-close" type="button" data-certificate-close autofocus>关闭 <span aria-hidden="true">×</span></button>
+  </div>
+  <img src="assets/img/cert-watermarked.jpg" alt="SKF 江苏区域经销商授权证书完整图" width="1028" height="727" loading="lazy" />
+</dialog>
 
 <!-- ============ 五大能力（现有优质内容保留） ============ -->
 <!-- 能力矩阵：合并原「五大能力 + 双轴叙事 + 服务流程」三屏 -->
@@ -346,31 +320,8 @@
   </div>
 </footer>
 
-<script>
-  (function () {
-    var v = document.querySelector('.hero-video-el');
-    if (!v) return;
-    var toggle = document.querySelector('.video-sound-toggle');
-    var txt = document.querySelector('.snd-text');
-    function setLabel() { if (txt) txt.textContent = v.muted ? '声音：关' : '声音：开'; }
-    // 尝试带声音自动播放（多数浏览器会拦截，退化为静音自动播放）
-    var p = v.play();
-    if (p && p.catch) {
-      p.catch(function () {
-        v.muted = true; setLabel();
-        v.play().catch(function () {});
-      });
-    }
-    if (toggle) {
-      toggle.addEventListener('click', function () {
-        v.muted = !v.muted;
-        if (!v.muted) { v.play().catch(function () {}); }
-        setLabel();
-      });
-    }
-    setLabel();
-  })();
-</script>
+<script src="assets/js/certificate.js?v=20261021" defer></script>
   <script src="https://trtc.io/knocket-sdk/sdk.js?identifier=155f077a337d958ac4&v=1792134145020" async></script>
+  <script src="assets/js/site.js?v=20261021" defer></script>
 </body>
 </html>
